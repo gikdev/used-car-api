@@ -2,9 +2,15 @@ import { ValidationPipe } from "@nestjs/common"
 import { NestFactory } from "@nestjs/core"
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger"
 import { AppModule } from "./app/app.module"
+const cookieSession = require("cookie-session")
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
+  app.use(
+    cookieSession({
+      keys: ["laskdjf"],
+    }),
+  )
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
